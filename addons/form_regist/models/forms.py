@@ -1,3 +1,5 @@
+import csv
+import os
 from odoo import fields, models, api
 
 
@@ -15,31 +17,31 @@ class test_form(models.Model):
     address = fields.Text(string="Address",
                           required=True)
 
-    others_id = fields.Many2one(
-        comodel_name='test.others',
-        string='Jobs',
-        required=False)
+    # def generate_csv(self):
+    #     folder_path = os.path.dirname(os.path.realpath(__file__))
+    #     filename = os.path.join(folder_path, 'output.csv')
+    #
+    #     data = self.env['test.form'].search([])
+    #
+    #     fieldnames = ['firstname', 'lastname', 'gender', 'address']
+    #
+    #     with open(filename, 'w', newline='') as csvfile:
+    #         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    #
+    #         writer.writeheader()
+    #
+    #         for record in data:
+    #             writer.writerow({
+    #                 'firstname': record.firstname,
+    #                 'lastname': record.lastname,
+    #                 'gender': record.gender,
+    #                 'address': record.address,
+    #             })
+    #
+    #     return True
 
-class test_others(models.Model):
-    _name = 'test.others'
-    _description = 'Additional'
-    _rec_name = 'job'
-
-    job = fields.Char(
-        string='Job', 
-        required=False)
-
-    level = fields.Selection(
-        string='Level',
-        selection=[('high_level', 'Executive or Senior Management'),
-                   ('mid_level', 'Middle Management'),
-                   ('entry_level', 'Entry Level')],
-        required=False, default='entry_level' )
-
-    
-    joindate = fields.Date(
-        string='Join Date',
-        required=False, default=fields.Date.today)
-
+    _sql_constraints = [
+        ('unique_name', 'unique(firstname, lastname)', 'The name must be unique.')
+    ]
         
     
