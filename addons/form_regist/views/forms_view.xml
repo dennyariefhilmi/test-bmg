@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="forms_view_tree" model="ir.ui.view">
+            <field name="name">forms_view_tree</field>
+            <field name="model">test.form</field>
+            <field name="arch" type="xml">
+                <tree string="forms_tree">
+                    <field name="firstname"/>
+                    <field name="lastname"/>
+                    <field name="gender"/>
+                    <field name="address"/>
+                    <field name="others_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="forms_view_form" model="ir.ui.view">
+            <field name="name">forms_view_form</field>
+            <field name="model">test.form</field>
+            <field name="arch" type="xml">
+                <form string="forms_form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="firstname"/>
+                                <field name="gender" widget="radio"/>
+                                <field name="others_id"/>
+                            </group>
+                            <group>
+                                <field name="lastname"/>
+                                <field name="address"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="forms_view_action" model="ir.actions.act_window">
+            <field name="name">Form Registrasi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">test.form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="form_view_categ"
+                  name="Form Registration"
+                  parent="menu_root"
+                  action="forms_view_action"
+                  sequence="10"/>
+
+    </data>
+</odoo>
