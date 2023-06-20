@@ -10,7 +10,6 @@
                     <field name="lastname"/>
                     <field name="gender"/>
                     <field name="address"/>
-                    <field name="others_id"/>
                 </tree>
             </field>
         </record>
@@ -21,17 +20,20 @@
             <field name="arch" type="xml">
                 <form string="forms_form">
                     <sheet>
+<!--                        <header>-->
+<!--                            <button string="Export to CSV" name="generate_csv" type="object" class="oe_highlight"/>-->
+<!--                        </header>-->
                         <group>
                             <group>
                                 <field name="firstname"/>
                                 <field name="gender" widget="radio"/>
-                                <field name="others_id"/>
                             </group>
                             <group>
                                 <field name="lastname"/>
                                 <field name="address"/>
                             </group>
                         </group>
+
                     </sheet>
                 </form>
             </field>
